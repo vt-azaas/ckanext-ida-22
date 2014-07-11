@@ -1,0 +1,37 @@
+{% extends "page.html" %}
+{% set homepage_style = ( g.homepage_style or '1' ) %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+   {% block primary_content %}
+      {% set tags = h.get_facet_items_dict('tags', limit=3) %}
+{% set placeholder = _('E.g. environment') %}
+
+<div role="main" class="hero">
+<div class="container">
+<div class="module module-search module-narrow module-shallow box">
+  <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
+    <h3 class="heading">Search for data</h3>
+    <div class="search-input control-group search-giant">
+      <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+      <button type="submit">
+        <i class="icon-search"></i>
+        <span>{{ _('Search') }}</span>
+      </button>
+    </div>
+  </form>
+  <div class="tags">
+    <h3 style='color:white'>{{ _('Popular tags') }}</h3>
+    {% for tag in tags %}
+      <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+    {% endfor %}
+  </div>
+</div>
+</div>
+</div>
+   {% endblock %}
+{% endblock %}

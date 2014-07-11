@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+{% block subtitle %}{{ _("Datasets") }}{% endblock %}
+
+{% block breadcrumb_content %}
+<li class="active">{{ h.nav_link(_('Datasets'), controller='package', action='search', highlight_actions = 'new index') }}</li>
+{% endblock %}
+
+{% block pre_primary %}
+       <iframe frameborder="0" style="width:100%; height:2000px" src="http://daas-dap.cloudapp.net/search" />
+
+{% endblock %}
+
+{% block primary_content %}
+  <section class="module">
+    <div class="module-content">
+      {% block page_primary_action %}
+        {% if h.check_access('package_create') %}
+          <div class="page_primary_action">
+            {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </section>
+{% endblock %}
+

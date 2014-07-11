@@ -1,0 +1,6 @@
+
+        [ckan.plugins]
+	# Add plugins here, eg
+	# myplugin=ckanext.custom_search:PluginClass
+        my_custom_search=ckanext.custom_search.plugin:CustomSearchPlugin
+	
