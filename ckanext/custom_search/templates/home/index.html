@@ -13,6 +13,7 @@
 
 <div role="main" class="hero">
 <div class="container">
+<div class="row row1">
 <div class="module module-search module-narrow module-shallow box">
   <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
     <h3 class="heading">Search datasets</h3>
@@ -24,12 +25,13 @@
       </button>
     </div>
   </form>
-  <div class="tags">
-    <h3 style='color:white'>{{ _('Popular tags') }}</h3>
+  <div style="background-color:#2f9b45">
+    <h3  style='color:white; display:block; float:left; margin: 5px 10px 0 0; font-size:14px; line-height:20px; padding: 2px 8px'>{{ _('Popular tags') }}</h3>
     {% for tag in tags %}
-      <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+      <a class="tag" style='margin: 5px' href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
     {% endfor %}
   </div>
+</div>
 </div>
 </div>
 </div>
