@@ -12,7 +12,14 @@ function getParameterByName(name) {
 ckan.module('custom_search_iframe', function ($, _) {
    return {
      initialize: function() {
-       this.el.html("<iframe frameborder='0' src='http://daas-dap.cloudapp.net/search?q=" + getParameterByName("q") + "' style='height:1800px;width:100%' />");
+       var q = getParameterByName("q");
+       if (q == "")
+       {
+          var q = getParameterByName("tags");
+       }
+
+       this.el.html("<iframe frameborder='0' src='http://daas-dap.cloudapp.net/search?q=" + q + "' style='height:1800px;width:100%' />");
+       //console.log( getParameterByName('q'));
      }
    };
 });
